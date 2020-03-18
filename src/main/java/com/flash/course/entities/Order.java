@@ -83,8 +83,8 @@ public class Order implements Serializable{
 		return payment;
 	}
 
-	public void setPatment(Payment patment) {
-		this.payment = patment;
+	public void setPatment(Payment payment) {
+		this.payment = payment;
 	}
 
 	public Set<OrderItem> getItems(){
@@ -99,6 +99,14 @@ public class Order implements Serializable{
 		if (orderStatus != null) {
 			this.orderStatus = orderStatus.getCode();
 		}
+	}
+	
+	public Double getTotal() {
+		double sum = 0.0;
+		for (OrderItem x : items) {
+			sum = sum + x.getSubTotal();
+		}
+		return sum;
 	}
 
 	@Override
